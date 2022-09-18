@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{med_question_list.qQuestion_ID}}</h1>
+    <ul>
+        <li>question_title : {{ med_question_list.qQuestion_Title}}</li>
+        <li>original question : {{ med_question_list.qOriginal_Question}}</li>
+        <li>query : {{ med_question_list.sQuery}}</li>
+    </ul>
+{% endblock content %}
+
+{% block nav_summary %} active {% endblock %}

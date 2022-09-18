@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block title%}
+<title>資料狀況</title>
+{% endblock%}
+{% block content%}
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        <div>
+            <table class="table table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">資料狀態</th>
+                        <th scope="col">數量</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">1</th>
+                        <th>已看過數量</th>
+                        <th>{{seen_questions_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <th>未看過數量</th>
+                        <th>{{unseen_questions_num}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{seen_per}}%" aria-valuenow="{{seen_per}}" aria-valuemin="0" aria-valuemax="100">看過 {{seen_per}}%</div>
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{unseen_per}}%" aria-valuenow="{{seen_per}}" aria-valuemin="0" aria-valuemax="100">未看過 {{unseen_per}}%</div>
+            </div>
+        </div>
+    </li>             
+    <li class="list-group-item">
+        <div>
+            <table class="table table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">問句分類</th>
+                        <th scope="col">數量</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">1</th>
+                        <th>單一問句(不包含常見)</th>
+                        <th>{{single_questions_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <th>常見問句</th>
+                        <th>{{often_questions_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <th>多重問句</th>
+                        <th>{{multi_questions_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <th>待討論問句</th>
+                        <th>{{discuss_questions_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <th>不可用問句</th>
+                        <th>{{trash_questions_num}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{single_per}}%" aria-valuenow="{{single_per}}" aria-valuemin="0" aria-valuemax="100">單一 {{single_per}}%</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{often_per}}%" aria-valuenow="{{often_per}}" aria-valuemin="0" aria-valuemax="100">常見 {{often_per}}%</div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: {{multi_per}}%" aria-valuenow="{{multi_per}}" aria-valuemin="0" aria-valuemax="100">多重 {{multi_per}}%</div>
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{discuss_per}}%" aria-valuenow="{{discuss_per}}" aria-valuemin="0" aria-valuemax="100">討論 {{discuss_per}}%</div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: {{trash_per}}%" aria-valuenow="{{trash_per}}" aria-valuemin="0" aria-valuemax="100">垃圾 {{trash_per}}%</div>
+            </div>
+        </div>
+    </li>             
+
+    <li class="list-group-item">
+
+        <div>
+            <table class="table table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">問題種類</th>
+                        <th scope="col">數量</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">1</th>
+                        <th>病症</th>
+                        <th>{{symptoms_type_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <th>藥物</th>
+                        <th>{{drugs_type_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <th>科室</th>
+                        <th>{{department_type_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <th>治療</th>
+                        <th>{{treatment_type_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <th>檢查</th>
+                        <th>{{examination_type_num}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <th>資訊</th>
+                        <th>{{informantion_type_num}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{symptoms_per}}%" aria-valuenow="{{symptoms_per}}" aria-valuemin="0" aria-valuemax="100">病症 {{symptoms_per}}%</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{drugs_per}}%" aria-valuenow="{{drugs_per}}" aria-valuemin="0" aria-valuemax="100">藥物 {{drugs_per}}%</div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: {{department_per}}%" aria-valuenow="{{department_per}}" aria-valuemin="0" aria-valuemax="100">科室 {{department_per}}%</div>
+                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{treatment_per}}%" aria-valuenow="{{treatment_per}}" aria-valuemin="0" aria-valuemax="100">治療 {{treatment_per}}%</div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: {{examination_per}}%" aria-valuenow="{{examination_per}}" aria-valuemin="0" aria-valuemax="100">檢查 {{examination_per}}%</div>
+                <div class="progress-bar bg-danger" role="progressbar" style="width: {{information_per}}%" aria-valuenow="{{information_per}}" aria-valuemin="0" aria-valuemax="100">資訊 {{information_per}}%</div>
+            </div>
+        </div>
+    </li>             
+
+</ul>
+{% endblock %}
+
+{% block nav_question_numbers %} active {% endblock %}

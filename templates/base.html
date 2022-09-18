@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    {% block title%}
+    {% endblock %}
+    <!-- CSS from bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+<body>
+    <!-- 最上方的bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">醫聯網問題摘要介面</a>
+            {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item {% block nav_summary %}{% endblock %}">
+                    <a class="nav-link" href="{% url 'your_questions_task' %}">摘要</a>
+                  </li>
+                  <li class="nav-item {% block nav_label %}{% endblock %}">
+                    <a class="nav-link" href="{% url 'your_label_tasks' %}">標記</a>
+                  </li>
+                  {% if user.is_staff %}
+                  <li class="nav-item {% block nav_task %}{% endblock %}">
+                    <a class="nav-link" href="{% url 'task_situations' %}">分配摘要任務</a>
+                  </li>
+                  <li class="nav-item {% block nav_label_task %}{% endblock %}">
+                    <a class="nav-link" href="{% url 'label_task_situations' %}">分配標記任務</a>
+                  </li>
+                  <li class="nav-item {% block nav_question_numbers %}{% endblock %}">
+                    <a class="nav-link" href="{% url 'total_question_numbers' %}">資料狀況</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+                
+            {% endif %}
+        <!-- 使用者狀況 -->
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                        登入
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

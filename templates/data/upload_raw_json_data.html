@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+<title>上傳檔案</title>
+{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="jsonfile_upload">
+    <button type="submit">上傳</button>
+</form>
+
+{% if error %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{error_msg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{success_msg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+{% endif %}
+
+{% endblock %}

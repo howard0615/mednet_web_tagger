@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}
+<title>標記介面</title>
+{% endblock %}
+
+{% block content %}
+<p>問題ID: {{question.qQuestion_ID}}</p>
+<p>問題Title: {{question.qQuestion_Title}}</p>
+<div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        {{review_form.as_p}}
+        <div class="container">
+            <div class="row">
+                <div class="col justify-content-start">
+                    <div class="text-left">
+                        <input type="button" value="prev" class="btn btn-outline-dark" onclick="location.href='/label/admin_review_labels/{{question.qQuestion_ID}}/prev/True/'">
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-primary" name="ques_filter" value="single">確認</button>
+                        <button type="submit" class="btn btn-outline-info" name="ques_filter" value="multi">多重</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <input type="button" value="next" class="btn btn-outline-dark" onclick="location.href='/label/admin_review_labels/{{question.qQuestion_ID}}/next/True/'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">項目</th>
+            {% for label in labels %}
+            <th scope="col">{{label.LUser}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">充分性</th>
+            {% for label in labels %}
+            <td>{{label.LAdequacy}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row">可演繹性</th>
+            {% for label in labels %}
+            <td>{{label.LDeducibility}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row">抽象性</th>
+            {% for label in labels %}
+            <td>{{label.LAbstractive}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row">備註</th>
+            {% for label in labels %}
+            <td>{{label.LNote}}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+    
+{% endblock content %}
+
+{% block nav_label %} active {% endblock %}

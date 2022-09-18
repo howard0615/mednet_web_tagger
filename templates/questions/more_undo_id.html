@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div>
+    <p>Undo questions</p>
+    {% for id in undo_id_list %}
+    <a href="{% url 'do_summary' ques_id=id %}">ID: {{id}}</a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block nav_summary %} active {% endblock %}

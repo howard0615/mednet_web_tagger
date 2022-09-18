@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div>
+    {% if superuser == True %}
+        <a href="{% url 'admin_review_labels_next' 20 False %}">審查標記</a>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+    {% for date, percent in data_situation.items%}
+    
+        <li class="list-group-item">
+            <div>
+                <div>
+                    <a href="{% url 'label_date_rough_see' date %}">任務開始日期：{{date}}</a>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:{{percent}}%" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">{{percent}}%</div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}
+
+{% block nav_label %} active {% endblock %}

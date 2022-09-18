@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+<title>摘要問題:{{med_question_list.qQuestion_ID}}</title>
+{% endblock%}
+
+{% block content %}
+
+{% if done_or_not.tdone and med_question_list.sQuestion_Filter != 0 %}
+<div class="alert alert-success" role="alert">
+    已摘要 - 分類：
+    {% if med_question_list.sQuestion_Filter == 1 %}
+        單一問句
+    {% elif med_question_list.sQuestion_Filter == 2 %}
+        常見問句
+    {% elif med_question_list.sQuestion_Filter == 3 %}
+        多重問句
+    {% elif med_question_list.sQuestion_Filter == 4 %}
+        待討論
+    {% elif med_question_list.sQuestion_Filter == 5 %}
+        垃圾
+    {% endif %}
+
+</div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+    未摘要
+</div>
+{% endif%}
+
+<p>問題ID: {{med_question_list.qQuestion_ID}}</p>
+<p>問題Title: {{med_question_list.qQuestion_Title}}</p>
+<div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        {{summary_form.as_p}}
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error_msg}}
+            </div>
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col justify-content-start">
+                    <div class="text-left">
+                        <input type="button" value="prev" class="btn btn-outline-dark" onclick="location.href='/questions/do_summary/{{date}}/{{med_question_list.qQuestion_ID}}/prev/True/'">
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-primary" name="ques_filter" value="single">單一問句</button>
+                        <button type="submit" class="btn btn-outline-success" name="ques_filter" value="often">常見問句</button>
+                        <button type="submit" class="btn btn-outline-info" name="ques_filter" value="multi">多重問句</button>
+                        <button type="submit" class="btn btn-outline-secondary" name="ques_filter" value="discuss">待討論</button>
+                        <button type="submit" class="btn btn-outline-danger" name="ques_filter" value="trash">丟垃圾</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <input type="button" value="next" class="btn btn-outline-dark" onclick="location.href='/questions/do_summary/{{date}}/{{med_question_list.qQuestion_ID}}/next/True/'">
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </form>
+</div>
+<!-- next_buttom & prev_buttom -->
+
+{% endblock content %}
+
+{% block nav_summary %} active {% endblock %}

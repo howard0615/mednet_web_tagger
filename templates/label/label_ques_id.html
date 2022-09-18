@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}
+<title>標記介面</title>
+{% endblock %}
+
+{% block content %}
+<div >
+    {% if done_or_not %}
+        <div class="alert alert-success" role="alert">
+            已標記過
+      </div>
+    {% endif %}
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 10%;">#</th>
+            <th scope="col">內容</th>
+        </tr>
+    </thead>
+        <tbody>
+        <tr>
+            <th scope="row">問題 ID</th>
+            <td>{{med_question_list.qQuestion_ID}}</td>
+        </tr>
+        <tr>
+            <th scope="row">問題Title</th>
+            <td>{{med_question_list.qQuestion_Title}}</td>
+        </tr>
+        <tr>
+            <th scope="row">原始問句</th>
+            <td>{{med_question_list.qOriginal_Question}}</td>
+        </tr>
+        <tr>
+            <th scope="row">摘要問句</th>
+            <td>{{med_question_list.sQuery}}</td>
+        </tr>
+        <tr>
+            <th scope="row">問題Type</th>
+            <td>{{med_question_list.get_sQuestion_Type_display}}</td>
+        </tr>
+        </tbody>
+    
+</table>
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">&ensp;充分性&ensp;</span>
+            </div>
+            {{ label_form.LAdequacy }}
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LAdequacy').value=1">True</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LAdequacy').value=0">False</button>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">可演繹性</span>
+            </div>
+            {{ label_form.LDeducibility }}
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LDeducibility').value=1">True</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LDeducibility').value=0">False</button>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">&ensp;抽象性&ensp;</span>
+            </div>
+            {{ label_form.LAbstractive }}
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LAbstractive').value=1">True</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('id_LAbstractive').value=0">False</button>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">&emsp;備註&emsp;</span>
+            </div>
+            {{ label_form.LNote }}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <input type="button" value="prev" class="btn btn-outline-dark" onclick="location.href='/label/do_label/{{date}}/{{ques_id}}/prev/True'"> 
+                    <input type="button" value="next" class="btn btn-outline-dark" onclick="location.href='/label/do_label/{{date}}/{{ques_id}}/next/True'">
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-outline-primary">&emsp;確認&emsp;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{error_msg}}
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block nav_label %} active {% endblock %}

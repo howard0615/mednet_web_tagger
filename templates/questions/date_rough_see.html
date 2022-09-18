@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+<title>摘要問題任務</title>
+{% endblock%}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">還未摘要</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="summary_id">
+                    {% for question in undone %}
+                    <option value="{{question.qQuestion_ID}}">{{question.qQuestion_ID}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Go!!" class="btn btn-outline-dark"> 
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">已完成摘要</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="summary_id">
+                    {% for question in done %}
+                    <option value="{{question.qQuestion_ID}}">{{question.qQuestion_ID}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Go!!" class="btn btn-outline-dark"> 
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav_summary %} active {% endblock %}

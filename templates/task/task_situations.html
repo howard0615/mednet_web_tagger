@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+<title>大家摘要任務狀態</title>
+{% endblock %}
+{% block content %}
+<div>
+    <a href="{% url 'distribute_task' %}">分配任務</a>
+</div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">指派日期</th>
+                    <th scope="col">被指派人員</th>
+                    <th scope="col">已完成資料量</th>
+                    <th scope="col">被指派資料量</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for datetime, users in Task.items %}
+                    {% for user, user_num in users.items%}
+                            <tr>
+                                <th scope="row">{{datetime}}</th>
+                                <th>{{user}}</th>
+                                {% for num_name, num in user_num.items %}
+                                <th>{{num}}</th>
+                                {% endfor %}
+                            </tr>
+                        
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+           
+        </table>
+    </div>
+    
+{% endblock %}
+
+{% block nav_task %} active {% endblock %}

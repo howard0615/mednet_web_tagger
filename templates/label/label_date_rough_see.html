@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+<title>標記問題</title>
+{% endblock%}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">還未摘要</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="label_id">
+                    {% for labeltask in undone %}
+                    <option value="{{labeltask.tQuestion.qQuestion_ID}}">{{labeltask.tQuestion.qQuestion_ID}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Go!!" class="btn btn-outline-dark"> 
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">已完成摘要</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="summary_id">
+                    {% for labeltask in done %}
+                    <option value="{{labeltask.tQuestion.qQuestion_ID}}">{{labeltask.tQuestion.qQuestion_ID}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Go!!" class="btn btn-outline-dark"> 
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav_label %} active {% endblock %}

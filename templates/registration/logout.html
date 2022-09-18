@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+<title>登出</title>
+{% endblock%}
+{% block content %}
+    <p>Logged Out!</p>
+    <a href="{% url 'login' %}">Click here to login.</a>
+<div>
+    {% if user.is_authenticated %}
+    <p>Hello, {{user.username}}</p>
+    {% else %}
+    <p>you are not login</p>
+    <a href="{% url 'login' %}">Login Page</a>
+    {% endif %}
+</div>
+{% endblock%}
