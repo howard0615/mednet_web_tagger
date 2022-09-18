@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jgh21d5a6z91*7kgf4^ez2f^hayi4@4fmvd6#865cc22ol8pgl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # 新增限制存取的IP
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
@@ -81,23 +81,23 @@ WSGI_APPLICATION = 'mednet_sum_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "MednetDataDB",
-        'USER': 'postgres',  #資料庫帳號
-        'PASSWORD': '****',  #資料庫密碼
-        'HOST': 'localhost',  #Server(伺服器)位址
-        'PORT': '****',  #PostgreSQL Port號
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "MednetDataDB",
+#         'USER': 'postgres',  #資料庫帳號
+#         'PASSWORD': '****',  #資料庫密碼
+#         'HOST': 'localhost',  #Server(伺服器)位址
+#         'PORT': '****',  #PostgreSQL Port號
+#     }
+# }
 
 
 # Password validation
