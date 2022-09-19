@@ -41,7 +41,7 @@ git clone https://github.com/howard0615/mednet_web_tagger.git
     Note : 新增新的使用者後，要重新開伺服器，使其可以讀取到使用者
 
 ## 介面使用方式
-* 登入
-
+* 登入  
+   ![text](https://github.com/howard0615/mednet_web_tagger/blob/master/img/login_page.png)
 ### SuperUser 管理員
 * 
