@@ -56,5 +56,3 @@ git clone https://github.com/howard0615/mednet_web_tagger.git
 ![data_condition](img/superuser_data_condition.png)
 
 * 將目前資料下載從 `localhost:8000/data/download_file/` (要先以superuser的身份登入)
-
-123
