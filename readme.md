@@ -41,7 +41,24 @@ git clone https://github.com/howard0615/mednet_web_tagger.git
     Note : 新增新的使用者後，要重新開伺服器，使其可以讀取到使用者
 
 ## 介面使用方式
+<<<<<<< HEAD
 * 登入  
    ![text](https://github.com/howard0615/mednet_web_tagger/blob/master/img/login_page.png)
 ### SuperUser 管理員
 * 
+=======
+* 登入
+![login]('https://github.com/howard0615/mednet_web_tagger/blob/master/img/login_page.png')
+
+### SuperUser 管理員
+* 指派摘要任務給標記者  
+![assemble_summarization]('https://github.com/howard0615/mednet_web_tagger/blob/master/img/superuser_assemblesummmarization_page.png')
+
+* 指派摘要評分(label)給標記者  
+![assemble_labe]('https://github.com/howard0615/mednet_web_tagger/blob/master/img/superuser_assemblelabel_page.png')
+
+* 資料狀態
+![data_condition]('https://github.com/howard0615/mednet_web_tagger/blob/master/img/superuser_data_condition.png')
+
+* 將目前資料下載從 `localhost:8000/data/download_file/` (要先以superuser的身份登入)
+
